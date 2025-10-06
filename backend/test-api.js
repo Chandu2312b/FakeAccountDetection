@@ -20,7 +20,7 @@ async function testAPI() {
     console.log('📤 Sending test scan request...');
     console.log('Data:', JSON.stringify(testData, null, 2));
     
-    const response = await fetch('http://localhost:4000/api/accounts/scan', {
+    const response = await fetch('https://fakeaccountdetection-1.onrender.com/api/accounts/scan', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -38,7 +38,7 @@ async function testAPI() {
     
     // Test getting the account
     console.log('\n📥 Testing account retrieval...');
-    const getResponse = await fetch(`http://localhost:4000/api/accounts/${testData.accountId}`);
+    const getResponse = await fetch(`https://fakeaccountdetection-1.onrender.com/api/accounts/${testData.accountId}`);
     
     if (getResponse.ok) {
       const accountData = await getResponse.json();

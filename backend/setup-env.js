@@ -6,7 +6,7 @@ MONGODB_URI=mongodb+srv://bchandu2385_db_user:Chandu%40238@cluster0.47cssvl.mong
 
 # Server Configuration
 PORT=4000
-CORS_ORIGIN=http://localhost:5173
+CORS_ORIGIN=https://fakeaccountdetection-2.onrender.com
 
 # Environment
 NODE_ENV=development
