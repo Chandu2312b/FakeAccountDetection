@@ -1,0 +1,50 @@
+services:
+  - type: web
+    name: fakeaccount-backend
+    env: node
+    rootDir: backend
+    plan: free
+    buildCommand: npm install
+    startCommand: node src/index.js
+    envVars:
+      - key: NODE_VERSION
+        value: 18
+      - key: PORT
+        value: 4000
+      - key: MONGO_URI
+        sync: false
+      - key: CORS_ORIGIN
+        value: "*"
+      - key: ML_SERVICE_URL
+        fromService:
+          name: fakeaccount-ml
+          type: web
+          property: host
+        # Will resolve to http://<host> by using health check; override via ENV if needed
+
+  - type: web
+    name: fakeaccount-ml
+    env: python
+    rootDir: ml_service
+    plan: free
+    buildCommand: |
+      pip install -r requirements.txt
+    startCommand: |
+      uvicorn main:app --host 0.0.0.0 --port 8000
+    autoDeploy: true
+    healthCheckPath: /health
+
+  - type: web
+    name: fakeaccount-frontend
+    env: static
+    rootDir: frontend
+    plan: free
+    buildCommand: |
+      npm install
+      npm run build
+    staticPublishPath: dist
+    envVars:
+      - key: VITE_API_BASE
+        # Fill with your backend base URL after backend is deployed
+        sync: false
+

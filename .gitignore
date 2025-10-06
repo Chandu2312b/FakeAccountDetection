@@ -1,0 +1,24 @@
+# Node
+node_modules/
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Frontend build
+frontend/dist/
+
+# Python
+ml_service/.venv/
+ml_service/venv/
+__pycache__/
+*.pyc
+
+# Env files
+.env
+backend/.env
+
+# Misc
+.DS_Store
+Thumbs.db
+
